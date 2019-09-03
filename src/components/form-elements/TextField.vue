@@ -25,25 +25,11 @@
 </template>
 
 <script>
-import {mask} from 'vue-the-mask';
 export default {
-  directives: {
-    mask: {
-      ...mask
-    }
-  },
   props: ["jsonData"],
   data() {
     return {
       data: {},
-      minLength: 0,
-      minLengthErrorMessage: "",
-      maxLength: 0,
-      maxLengthErrorMessage: "",
-      isRequired: false,
-      requiredErrorMessage: "",
-      regex: "",
-      regexErrorMessage: "",
       rules: []
     };
   },
@@ -55,8 +41,33 @@ export default {
   methods: {
     getRules(validations) {
       if (validations.required && validations.required.value) {
-        let exp = v => !!v || validations.required.errorMessage;
-        this.rules.push(exp);
+        let req = v => !!v || validations.required.errorMessage;
+        this.rules.push(req);
+        console.log(this.rules);
+      }
+      if (validations.minLength && validations.minLength.value > 0) {
+        let min = v => v.length < validations.minLength.value || validations.minLength.errorMessage;
+        console.log(min);
+        this.rules.push(min);
+        console.log(this.rules);
+      }
+      if (validations.maxLength && validations.maxLength.value > 0) {
+        let max = v => v.length > validations.maxLength.value || validations.maxLength.errorMessage;
+        console.log(max);
+        this.rules.push(max);
+        console.log(this.rules);
+      }
+      if (
+        validations.regex &&
+        validations.regex.value != "" &&
+        validations.regex.value != null
+      ) {
+        let regx = v => {
+          const pattern = validations.regex.value;
+          return pattern.test(v) || validations.regex.errorMessage;
+        };
+        console.log(regx);
+        this.rules.push(regx);
         console.log(this.rules);
       }
     }
@@ -67,29 +78,7 @@ export default {
 
     //get needed values for rules
     var validations = this.data.validations;
-    window.console.log(validations);
-
     this.getRules(validations);
-
-    // if (validations.minLength) {
-    //   this.minLength = validations.minLength.value;
-    //   this.minLengthErrorMessage = validations.minLength.errorMessage;
-    // }
-
-    // if (validations.maxLength) {
-    //   this.maxLength = validations.maxLength.value;
-    //   this.maxLengthErrorMessage = validations.maxLength.errorMessage;
-    // }
-
-    // if (validations.regex) {
-    //   this.regex = validations.regex.value;
-    //   this.regexErrorMessage = validations.regex.errorMessage;
-    // }
-
-    // if (validations.required) {
-    //   this.isRequired = validations.required.value;
-    //   this.requiredErrorMessage = validations.required.errorMessage;
-    // }
   }
 };
 </script>
