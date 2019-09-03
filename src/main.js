@@ -6,6 +6,9 @@ import vuetify from "./plugins/vuetify";
 import VJsoneditor from "v-jsoneditor/src/index";
 import '@babel/polyfill'
 
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
+
 Vue.use(VJsoneditor);
 
 new Vue({

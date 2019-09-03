@@ -33,14 +33,17 @@ export default {
           {
             name: "firstName",
             type: "text",
+            hint: "example for test",
             style: "outlined",
+            icon: "mdi-pencil",
             editor: "SingleLineText",
             label: "First Name",
             placeholder: "Please enter your first name",
             maxlength: 15,
-            width: "col-md-6 col-lg-1",
+            width: "cols-12 col-xs-3 col-sm-3 col-md-4 col-lg-4",
             disabled: false,
             mask: "###.###.###-##",
+            value: '',
             validations: {
               required: {
                 value: true,
@@ -57,7 +60,7 @@ export default {
                   "Maximum allowed length for the first name is 15 characters"
               },
               regex: {
-                value: "[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]",
+                value: "/[0-9]+/",
                 errorMessage:
                   "The value you enteres doesn't match the predefined pattern"
               }
