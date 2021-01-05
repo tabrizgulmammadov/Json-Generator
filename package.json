@@ -11,7 +11,7 @@
     "@babel/polyfill": "^7.4.4",
     "@formschema/native": "^2.0.0-alpha.2",
     "@koumoul/vuetify-jsonschema-form": "^0.28.3",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "json-schema-for-vuetify": "^0.25.1",
     "v-jsoneditor": "^1.2.2",
